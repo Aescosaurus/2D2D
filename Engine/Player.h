@@ -1,3 +1,4 @@
+/*
 #pragma once
 
 #include "Graphics.h"
@@ -85,4 +86,24 @@ private:
 	const Font consolas = { "Fonts/FixedSys16x28.bmp" };
 
 	Vec2 lastPos;
+};
+*/
+#pragma once
+
+#include "GravObject.h"
+
+class Player
+	:
+	public GravObject
+{
+public:
+	Player( const Vec2& pos );
+	
+	void Update( const Keyboard& kbd,float dt) override;
+private:
+	static constexpr int size = 32;
+	static constexpr float speed = 123.5f;
+	static constexpr float maxSpeed = speed * 2.5f;
+	static constexpr float slowdownFactor = 0.96f;
+	float vel = 0.0f;
 };

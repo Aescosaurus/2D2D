@@ -1,5 +1,5 @@
 #include "Player.h"
-
+/*
 Player::Player( const Vei2& pos )
 	:
 	pos( Vec2( pos ) ),
@@ -260,4 +260,33 @@ bool Player::HitTestRight( const Rect& rect ) const
 	{
 		return false;
 	}
+}
+*/
+
+Player::Player( const Vec2& pos )
+	:
+	GravObject( pos,{ size,size } )
+{
+}
+
+void Player::Update( const Keyboard& kbd,float dt )
+{
+	if( kbd.KeyIsPressed( 'A' ) )
+	{
+		vel -= speed;
+	}
+	else if( kbd.KeyIsPressed( 'D' ) )
+	{
+		vel += speed;
+	}
+	else if( abs( vel ) < 23.5f ) vel = 0.0;
+
+	if( vel > maxSpeed ) vel = maxSpeed;
+	if( vel < -maxSpeed ) vel = -maxSpeed;
+
+	pos.x += vel * dt;
+
+	vel *= slowdownFactor;
+
+	GravObject::Update( kbd,dt );
 }

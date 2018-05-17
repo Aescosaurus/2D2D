@@ -82,7 +82,7 @@ void Game::UpdateModel()
 		pl.Move( displacement );
 	}
 
-	pl.Update( wnd.kbd,wnd.mouse,dt );
+	pl.Update( wnd.kbd,dt );
 	pl.CheckHits( plats );
 
 	for( auto& e : enemies )
@@ -91,7 +91,7 @@ void Game::UpdateModel()
 
 		e->CheckHits( plats );
 
-		pl.CheckEnemyHit( *e );
+		// pl.CheckEnemyHit( *e );
 	}
 }
 
